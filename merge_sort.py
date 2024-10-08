@@ -1,22 +1,22 @@
 from time import time
 from random import shuffle
 
-
-def merge_sort(lista):
+def merge_sort(lista, contador_comparacoes):
     if len(lista) > 1:
         meio = len(lista) // 2  # Encontra o meio da lista
         metade_esquerda = lista[:meio]  # Divide a lista na metade esquerda
         metade_direita = lista[meio:]   # Divide a lista na metade direita
 
         # Recursivamente divide as duas metades
-        merge_sort(metade_esquerda)
-        merge_sort(metade_direita)
+        merge_sort(metade_esquerda, contador_comparacoes)
+        merge_sort(metade_direita, contador_comparacoes)
 
         # Índices para as sublistas
         i = j = k = 0
 
         # Ordena as duas metades
         while i < len(metade_esquerda) and j < len(metade_direita):
+            contador_comparacoes += 1  # Incrementa o contador de comparações
             if metade_esquerda[i] < metade_direita[j]:
                 lista[k] = metade_esquerda[i]
                 i += 1
@@ -36,17 +36,19 @@ def merge_sort(lista):
             lista[k] = metade_direita[j]
             j += 1
             k += 1
-    return lista
+    return lista, contador_comparacoes  # Retorna a lista ordenada e o número de comparações
 
-
-tamanho = 10000
+tamanho = 1000
 
 lista_ordenada = list(range(tamanho))
 lista_inversamente_ordenada = list(range(tamanho, 0, -1))
 lista_aleatoria = list(range(tamanho))
 shuffle(lista_aleatoria)
 
+contador_comparacoes = 0  # Inicializa o contador de comparações
 inicio = time()
-resultado = merge_sort(lista_inversamente_ordenada)
+resultado, total_comparacoes = merge_sort(lista_inversamente_ordenada, contador_comparacoes)
 fim = time()
-print(f"Tempo de execução: {(fim - inicio) * 1000} ms")
+
+print(f"Tempo de execução: {(fim - inicio) * 1000:.2f}ms")
+print(f"Número total de comparações: {total_comparacoes}")
