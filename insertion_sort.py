@@ -3,6 +3,7 @@ from random import shuffle
 
 def insertion_sort(lista):
     comparacoes = 0  # Inicializa o contador de comparações
+    trocas = 0       # Inicializa o contador de trocas
     # Percorre a lista começando do segundo elemento
     for i in range(1, len(lista)):
         chave = lista[i]
@@ -13,12 +14,15 @@ def insertion_sort(lista):
             comparacoes += 1  # Incrementa o contador de comparações
             if lista[j] > chave:
                 lista[j + 1] = lista[j]
+                trocas += 1  # Incrementa o contador de trocas
                 j -= 1
             else:
                 break  # Sai do loop se não for necessário mover
         lista[j + 1] = chave
+        if j + 1 != i:  # Verifica se houve realmente uma troca
+            trocas += 1  # Incrementa o contador de trocas
     
-    return lista, comparacoes  # Retorna a lista ordenada e o número de comparações
+    return lista, comparacoes, trocas  # Retorna a lista ordenada, número de comparações e trocas
 
 tamanho = 1000
 
@@ -28,8 +32,9 @@ lista_aleatoria = list(range(tamanho))
 shuffle(lista_aleatoria)
 
 inicio = time()
-resultado, total_comparacoes = insertion_sort(lista_inversamente_ordenada)
+resultado, total_comparacoes, total_trocas = insertion_sort(lista_ordenada)
 fim = time()
 
 print(f"Tempo de execução: {(fim - inicio) * 1000:.2f}ms")
 print(f"Número total de comparações: {total_comparacoes}")
+print(f"Número total de trocas: {total_trocas}")

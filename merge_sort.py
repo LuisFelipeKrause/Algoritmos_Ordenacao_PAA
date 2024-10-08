@@ -24,18 +24,21 @@ def merge_sort(lista, contador_comparacoes):
                 lista[k] = metade_direita[j]
                 j += 1
             k += 1
+            trocas += 1
 
         # Verifica se ainda há elementos na metade esquerda
         while i < len(metade_esquerda):
             lista[k] = metade_esquerda[i]
             i += 1
             k += 1
+            trocas += 1
 
         # Verifica se ainda há elementos na metade direita
         while j < len(metade_direita):
             lista[k] = metade_direita[j]
             j += 1
             k += 1
+            trocas += 1
     return lista, contador_comparacoes  # Retorna a lista ordenada e o número de comparações
 
 tamanho = 1000
@@ -45,10 +48,12 @@ lista_inversamente_ordenada = list(range(tamanho, 0, -1))
 lista_aleatoria = list(range(tamanho))
 shuffle(lista_aleatoria)
 
+trocas = 0
 contador_comparacoes = 0  # Inicializa o contador de comparações
 inicio = time()
-resultado, total_comparacoes = merge_sort(lista_inversamente_ordenada, contador_comparacoes)
+resultado, total_comparacoes = merge_sort(lista_ordenada, contador_comparacoes)
 fim = time()
 
 print(f"Tempo de execução: {(fim - inicio) * 1000:.2f}ms")
 print(f"Número total de comparações: {total_comparacoes}")
+print(f"Número total de trocas: {trocas}")
