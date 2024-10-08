@@ -11,7 +11,6 @@ def bubble_sort(arr):
     return arr
 
 
-# Chamada da função para gerar as listas
 tamanho = 1000
 
 lista_ordenada = list(range(tamanho))

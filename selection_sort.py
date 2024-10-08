@@ -13,10 +13,10 @@ def selection_sort(lista):
         
         # Troca o menor elemento encontrado com o primeiro elemento não ordenado
         lista[i], lista[indice_minimo] = lista[indice_minimo], lista[i]
+    return lista
 
 
-# Chamada da função para gerar as listas
-tamanho = 50000
+tamanho = 1000
 
 lista_ordenada = list(range(tamanho))
 lista_inversamente_ordenada = list(range(tamanho, 0, -1))
