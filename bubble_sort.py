@@ -21,7 +21,7 @@ lista_aleatoria = list(range(tamanho))
 shuffle(lista_aleatoria)
 
 inicio = time()
-resultado, total_comparacoes, total_trocas = bubble_sort(lista_ordenada)
+resultado, total_comparacoes, total_trocas = bubble_sort(lista_inversamente_ordenada)
 fim = time()
 
 print(f"Tempo de execução: {(fim - inicio) * 1000:.2f}ms")
